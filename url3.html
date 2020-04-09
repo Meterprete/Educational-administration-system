@@ -1,0 +1,299 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" > 
+
+<html>
+  <head>
+    <title>教学安排表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <link rel="stylesheet" href="../_style/styles_Qry.css" type="text/css">
+	<script language="JavaScript" src='../include/scr/ind_HTML_hr.js'></script>
+	<script language="JavaScript" src='../js/Validate.js'></script>
+	<script language="JavaScript" src='../js/md5.js'></script>
+	<script language="javascript" src='../XSCJ/Private/ind_PrintSet.js'></script>
+	<script language=javascript>
+		function CkkZcVal(theID)
+		{
+			var Tstr1=theID.value.split(',');
+			var Tstr2;
+			//按＂,＂拆分字符串
+			for (i=0;i<=Tstr1.length-1;i++){
+				if((isNaN(Tstr1[i])) || (Tstr1[i]=="")){
+					//按＂-＂拆分字符串
+					Tstr2=Tstr1[i].split('-');
+  					for(j=0;j<=Tstr2.length-1;j++){
+						if((Tstr2.length>2)||(isNaN(Tstr2[j]))||(Tstr2[j]=="")||(Tstr2[j]<0)||(Tstr2[j].length>2)){
+							if(Tstr2[j].length>2){
+								alert('周次不能超过100！');
+							}else{
+								alert('请输入正确的周次！');
+							}
+							theID.value='1-18';return false;
+						}
+					}
+				}
+			}
+			return true;
+		}
+		
+		function ChkVal()
+		{
+			var TheObjVal=document.all.Sel_XNXQ.value;
+			if((TheObjVal=="")||(TheObjVal=="Nothing")){
+				alert('需选定学年学期！');
+				document.all.Sel_XNXQ.focus();
+			//}else if(document.all.txt_yzm.value==""){
+			//	alert("须录入验证码！");
+			//	document.all.txt_yzm.focus();
+			}else{
+			    var s=randomString(15);
+			    document.all.hidsjyzm.value=md5("12843"+TheObjVal+s).toUpperCase();
+				form.action="Pri_StuSel_rpt.aspx?m="+s;
+				form.method="post";
+				form.target="frmRpt";
+				form.submit();
+			}
+		}
+		function doPrint1()
+		{
+			var TheObjVal=document.all.Sel_XNXQ.value;
+			if((TheObjVal=="")||(TheObjVal=="Nothing")){
+				alert('需选定学年学期！');
+				document.all.Sel_XNXQ.focus();
+			//}else if(document.all.txt_yzm.value==""){
+			//	alert("须录入验证码！");
+			//	document.all.txt_yzm.focus();
+			}else{
+			    var s=randomString(15);
+			    document.all.hidsjyzm.value=md5("12843"+TheObjVal+s).toUpperCase();
+			    /*
+				form.action="Pri_StuSel_rpt_print.aspx?m="+s;
+				form.method="post";
+				form.target="blank";
+				form.submit();
+				*/
+				var Tform='status=no,scrollbars=1,help=no,resizable=1,width=900,height=500';
+	            var url='Pri_StuSel_rpt_print.aspx?Sel_XNXQ='+document.all.Sel_XNXQ.value+'&zc_flag='+document.all.zc_flag.value+'&px='+document.all.px.value+'&zc_input='+document.all.zc_input.value;	
+	           pop=window.open(url,1,Tform);
+	           pop.resizeTo(screen.availWidth, screen.availHeight);
+	            pop.moveTo(0,0);
+			}
+		}
+		 
+		function doExport()
+		{
+			var i,j,k;
+			var Len=1;
+			var tables=frmRpt.document.all.tags('table');
+			if(tables.length>0)
+			{
+				var xlApp;             //存放Excel对象 
+				var xlBook;            //存放Excel工件簿文件 
+				var xlSheet;           //存放Excel活动工作表 
+				try{ 
+						xlApp = new ActiveXObject('Excel.Application');//创建Excel对象
+						xlBook = xlApp.Workbooks.Add();  //创建Excel工作簿文件 
+						xlSheet = xlBook.ActiveSheet;    //激活Excel工作表 
+						xlApp.Visible = true;            //设置Excel对象可见
+						for(i=0;i<tables.length;i++)
+						{
+							//if(tables[i].name=="theExportData")
+						//	{
+								var rowLen;
+								var colLen;
+								rowLen=tables[i].rows.length;                //table对象的行数
+								for(j=0;j<rowLen;j++)
+								{
+									colLen=tables[i].rows(j).cells.length;   //table对象的列数 
+									for(k=0;k<colLen;k++)
+									{                    //为Excel表的单元格赋值 
+										try
+										{
+											xlSheet.Cells(Len+j+1,k+1).value=new String(tables[i].rows(j).cells(k).innerText);
+										}catch(e){}
+									}
+								}
+								Len+=rowLen;
+						//	}
+						}
+				}
+				catch(e)
+				{ 
+					alert('请在IE选项中启用ActiveX控件设置！'); 
+					return false;
+				} 
+				return true;
+			}
+			return false;
+		}
+		function fnExport(){
+			try{
+				xlApp = new ActiveXObject("Excel.Application");//创建Excel对象
+				xlBook = xlApp.Workbooks.Add();  //创建Excel工作簿文件 
+				xlSheet = xlBook.ActiveSheet;    //激活Excel工作表
+				var tbls;
+				if(document.getElementById('rad_gs1').checked){	//格式一
+					tbls = frmRpt.document.getElementsByTagName('table');
+					for(var n=0; n<tbls[1].rows[0].cells.length; n++){xlSheet.Cells(4, n+1).value = new String(tbls[1].rows[0].cells[n].innerText);}
+					for(var i=0; i<tbls[2].rows.length; i++){
+						for(var n=0; n<tbls[2].rows[i].cells.length; n++){
+							var k = tbls[2].rows[i].cells.length == 9 ? n+1 : n+2;
+							xlSheet.Cells(i+5, k).value = new String(tbls[2].rows[i].cells[n].innerText);
+						}
+					}
+					xlSheet.Cells(3, 1).value = tbls[0].rows[0].cells[0].innerText;
+					xlSheet.Range(xlSheet.Cells(4, 1), xlSheet.Cells(i+4, n+1)).Borders.LineStyle = 1;		//加边框
+					xlSheet.Columns('A:A').ColumnWidth = xlSheet.Columns('B:B').ColumnWidth = 7;
+					xlSheet.Columns('C:C').ColumnWidth = xlSheet.Columns('D:D').ColumnWidth = 
+					xlSheet.Columns('E:E').ColumnWidth = xlSheet.Columns('F:F').ColumnWidth = 
+					xlSheet.Columns('G:G').ColumnWidth = xlSheet.Columns('H:H').ColumnWidth = 
+					xlSheet.Columns('I:I').ColumnWidth = 14;
+					xlSheet.Range(xlSheet.Cells(4, 1), xlSheet.Cells(4, n+1)).HorizontalAlignment = 
+					xlSheet.Range(xlSheet.Cells(5, 1), xlSheet.Cells(i+4, n+1)).HorizontalAlignment = 3;
+					xlSheet.Range(xlSheet.Cells(5, 1), xlSheet.Cells(6, 1)).Merge();
+					xlSheet.Range(xlSheet.Cells(7, 1), xlSheet.Cells(8, 1)).Merge();
+					xlSheet.Range(xlSheet.Cells(9, 1), xlSheet.Cells(10, 1)).Merge();
+					xlSheet.Cells(1, 1).value = frmRpt.document.getElementById('tn1').innerText;
+					xlSheet.Cells(2, 1).value = frmRpt.document.getElementById('tn2').innerText;
+					xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(1, n+1)).Merge();
+					xlSheet.Range(xlSheet.Cells(2, 1), xlSheet.Cells(2, n+1)).Merge();
+					xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(i+4, n+1)).Rows.AutoFit();				//最合适行高
+					xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(2, n+1)).HorizontalAlignment = 3;		//标题行居中
+				}else{	//格式二
+					var sel = frmRpt.document.body.createTextRange();
+					sel.moveToElementText(frmRpt.document.body);
+					sel.select();
+					sel.execCommand("Copy");
+					xlSheet.Paste();
+					var rows = xlSheet.UsedRange.Rows.Count;
+					var cols = xlSheet.UsedRange.Columns.Count;
+					xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(3, 1)).HorizontalAlignment = 3;
+					xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(1, cols)).Merge();
+					xlSheet.Range(xlSheet.Cells(2, 1), xlSheet.Cells(2, cols)).Merge();
+					xlSheet.Range(xlSheet.Cells(3, 1), xlSheet.Cells(3, cols)).Merge();
+					xlSheet.Range(xlSheet.Cells(4, 1), xlSheet.Cells(4, cols)).Merge();
+					
+					xlSheet.Range(xlSheet.Cells(5, 1), xlSheet.Cells(rows - 1, cols)).Hyperlinks.Delete();			//去超链接
+					xlSheet.Range(xlSheet.Cells(5, 1), xlSheet.Cells(rows, cols)).Interior.ColorIndex = 0;			//去底色
+					xlSheet.Range(xlSheet.Cells(5, 1), xlSheet.Cells(rows - 1, cols)).Borders.LineStyle = 1;		//加边框
+					xlSheet.Range(xlSheet.Cells(rows, 1), xlSheet.Cells(rows, cols)).Merge();
+					xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(rows, cols)).Rows.AutoFit();
+					xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(rows, cols)).Columns.AutoFit();
+				}
+				xlApp.Visible = true;
+			}catch(e){
+				alert('请使用IE浏览器,并在选项中启用ActiveX控件设置！');
+			}
+		}
+		function doPrint(){
+		   /*
+			var gs = function(){
+				var P = document.getElementsByName('rad');
+				for(var i=0; i<P.length; i++){
+					if(P[i].checked){
+						return P[i].value;
+						break;
+					}
+				}
+			}();
+			var win = window.open('../sys/printer.aspx?gs='+gs, '', 'width=650,height=540;menubar=no,tools=no,location=no,resizable=yes,scrollbars=yes,status=no');
+			win.resizeTo(screen.availWidth, screen.availHeight);
+			win.moveTo(0, 0);
+			*/
+			//window.frames["frmRpt"].document.execCommand("Print",true);
+			var note=window.navigator.userAgent;
+			var IE=window.navigator.userAgent.indexOf('MSIE');
+			if(note.indexOf('MSIE 6.0')>0 || note.indexOf('MSIE 7.0')>0 || note.indexOf('MSIE 10.0')>0 || (/rv:11.0/g.test(note)))
+			{
+				alert("请使用IE8、IE9、火狐(Firefox)或谷歌(Chrome)等浏览器打印！");
+			}
+			else if(IE>0)
+			{
+				window.frames["frmRpt"].document.execCommand("Print",true);
+			}
+			else
+			{
+				window.frames["frmRpt"].print();
+			}
+		}
+	    function changeValidateCode(){document.getElementById("imgCode").src="../sys/ValidateCode.aspx?t="+new Date().getMilliseconds();}
+	</script>
+    </head>
+	<body  onselectstart="return false" oncontextmenu="return false" ondragstart="return false" onsource="return false" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+		<form name="form" method="post" >
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+			<tr>
+				<td valign="top" align="center">
+					<table width="660" border="0" cellspacing="0" cellpadding="0" align="center" height="26">
+						<tr>
+							<td valign="bottom" align="center"><b>教学安排表</b></td>
+						</tr>
+						<tr>
+							<td valign="bottom" align="center"><script language="JavaScript">Draw_HR('99.5%')</script>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table width="660" border="0" align="center" cellpadding="0" cellspacing="0">
+						
+								<tr>
+									<td width="34%" height="28px">学年学期&ensp;<select name='Sel_XNXQ'  style='WIDTH:165px'><option value='20191'>2019-2020学年第二学期</option><option value='20190'>2019-2020学年第一学期</option><option value='20181'>2018-2019学年第二学期</option><option value='20180'>2018-2019学年第一学期</option><option value='20171'>2017-2018学年第二学期</option><option value='20170'>2017-2018学年第一学期</option><option value='20161'>2016-2017学年第二学期</option><option value='20160'>2016-2017学年第一学期</option><option value='20151'>2015-2016学年第二学期</option><option value='20150'>2015-2016学年第一学期</option><option value='20141'>2014-2015学年第二学期</option></select></td>
+									<td width="19%" id="sel_area1">
+										<input type="radio" name="rad" id="rad_gs1" value=0  onClick='if(this.checked==true){this.value=0;document.getElementById("sel_area").style.visibility="hidden";}'><label for="rad_gs1">格式一</label>
+										<input type="radio" name="rad" id="rad_gs2" checked value=1 onClick='if(this.checked==true){this.value=1;document.getElementById("sel_area").style.visibility="";}'}><label for="rad_gs2">格式二</label>
+									</td>
+									<td id="sel_area" style="visibility:" >
+										<input value="1" name="zc_flag" id="zc_flag" type="checkbox" onclick=if(this.checked){document.all.zc_input.disabled=false;document.all.zc_input.focus();}else{document.all.zc_input.disabled=true;}>
+										<label for="zc_flag">周次</label>&ensp;<input type=text style="width:80px" name="zc_input" disabled onblur=CkkZcVal(this) value="1-18">
+										排序&ensp;<select name="px" style="width:98px"><option value=0>按课程/环节</option><option value=1>按时间</option></select>
+									</td>
+								</tr>
+								<tr>
+								<td align="center" colspan="3">
+								<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tr>
+								 <td align="left" style="display:none;">验证码&ensp;<input type="text" name="txt_yzm" id="txt_yzm" maxlength="4" style="width:40px">
+									<img id="imgCode" src="../sys/ValidateCode.aspx" onclick="changeValidateCode()" alt="单击可更换图片！" style="CURSOR: pointer;width:70px;height:24px">
+									</td>
+									<td align="left" height="25px" valign="middle">
+									<!--<img id="img" src="../images/weixiao.gif" /><label style="color:green;"><b>手机查课表、传纸条、随手记、查考试、查成绩，免费下载<a href='http://www.palmcampus.com/' target=_blank'>青果掌上校园！</a></b></label>--></td>
+									<td align="right"><input name="btnSearch" type="button" value="检索" class="button" onclick="ChkVal()">
+									<!--[if IE]><input type="button" value="页面设置" class=but40 onclick="PrintSetup()"><!--[end if]-->
+									<input name="btn_print" type="button" value="打印" class="button" onclick="return doPrint()" >
+									<!--[if IE]><input name="btn_export" type="button" style="display:none" value="导出" class="button" onclick="return fnExport()"><!--[end if]--></td>
+								</tr>
+								</table>
+								</td></tr>
+						
+					</table>
+				</td>
+			</tr>
+			
+			<tr>
+				<td valign="top" align="center" height="100%"><input type="hidden" name="hidyzm" value="cb958618aa3f1024982ea67303c0b6z"><input type="hidden" name="hidsjyzm" >
+					<iframe name="vfrmRpt" src="" style="DISPLAY:none" width="0" height="0" frameborder="0"></iframe>
+					<iframe name="frmRpt" id="frmRpt" src="Pri_StuSel_rpt.aspx" width="99%" height="98%" frameborder="0"></iframe>
+				</td>
+			</tr>
+		</table>
+		</form>
+		<script language="javascript">
+			if("12843"=="10050")
+			{
+				document.all.sel_area1.style.display='none';
+				document.all.sel_area.style.display='none';
+			}
+			
+			if("12843"=="10536")
+			{
+				document.getElementById("sel_area").style.display='none';
+				document.getElementById("sel_area1").style.display='none';
+				document.getElementById("rad_gs2").checked = true;
+				document.getElementById("rad_gs2").onclick();
+			}
+		</script>
+	</body>
+</html>
+
