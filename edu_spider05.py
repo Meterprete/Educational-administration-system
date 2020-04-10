@@ -30,8 +30,7 @@ class Climb_to_God:
             "Host": "jwgl.wfust.edu.cn",
             "Origin": "http://jwgl.wfust.edu.cn",
             "Referer": "http://jwgl.wfust.edu.cn/znpk/Pri_StuSel.aspx",
-            "Upgrade-Insecure-Requests": "1",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36"
+            "User-Agent": useragent
         }
         self.headers_2 = {
             "Cookie": cookie,
