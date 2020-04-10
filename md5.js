@@ -165,3 +165,19 @@ function ChkVal() {
     var hidsjyzm = md5("12843" + TheObjVal + s).toUpperCase();
     return {"hidsjyzm": hidsjyzm, "s": s}
 }
+
+// txt_asmcdefsddsd = "2018253328";
+// user_name = "135089293Wx";
+
+function usermd5(txt_asmcdefsddsd, user_name) {
+    return md5(txt_asmcdefsddsd + md5(user_name).substring(0, 30).toUpperCase() + '12843').substring(0, 30).toUpperCase();
+}
+
+function usermmdd55(txt_asmcdefsddsd) {
+    return md5(md5(txt_asmcdefsddsd.toUpperCase()).substring(0, 30).toUpperCase() + '12843').substring(0, 30).toUpperCase();
+}
+
+function changeValidateCode() {
+    var dt = new Date();
+    return ("http://jwgl.wfust.edu.cn/sys/ValidateCode.aspx?t=" + dt.getMilliseconds());
+}

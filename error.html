@@ -1,0 +1,311 @@
+<script language='javascript'>
+<!--
+ window.top.document.location.replace("../MAINFRM.aspx");
+//-->
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>潍坊科技学院</title>
+    <meta name="GENERATOR" Content="Microsoft Visual Studio .NET 7.1">
+    <meta name="CODE_LANGUAGE" Content="C#">
+    <meta name=vs_defaultClientScript content="JavaScript">
+    <meta name=vs_targetSchema content="http://schemas.microsoft.com/intellisense/ie5">
+  <meta http-equiv="Pragma" content="no-cache">
+     <LINK href="../_Style/Styles_home_new.css" type="text/css" rel="stylesheet">
+     <style>
+     .txzx{line-height:30px;}
+     </style>
+	<script type="text/javascript" src="../js/jquery.min.js"></script> 
+    <script language="javascript" type="text/javascript">
+        var jq = jq$ = j$ = jQuery.noConflict();
+        javascript: window.history.forward(1);
+        function showvc(obj) {
+            $("imgCode").style.display = "";
+            shtitcus(obj);
+        }
+        function returnValue() {
+            try { window.location.href = "login_home.aspx"; } catch (e) { alert(e); }
+        }
+
+        j$(function () {
+            j$("#qr_btn").click(function () {
+                $("lbl_zhdl").style.color = "black";
+                $("qr_btn").style.color = "#2c93db";
+                parent.openqrwindow();
+            }
+				);
+        }
+        )
+        function CkValue() {
+            var vU = "帐号";
+            var vcFlag = "YES";
+            if ($('txt_asmcdefsddsd').value == "" || $('txt_asmcdefsddsd').value=="请输入帐号") {
+                alert('须录入' + vU + '！');
+                $('txt_asmcdefsddsd').focus(); 
+                return false;
+            }
+            else if ($('txt_pewerwedsdfsdff').value == "") {
+                alert('须录入密码！');
+                if($("txt_psasas").style.display=="")
+                {
+                   $("txt_psasas").focus(); 
+                }
+                else
+                {
+                   $('txt_pewerwedsdfsdff').focus(); 
+                }
+                return false;
+            }
+            else if (($('txt_sdertfgsadscxcadsads').value == "" || $('txt_sdertfgsadscxcadsads').value == "请输入验证码")  && vcFlag == "YES") {
+                alert('须录入验证码！');
+                $('txt_sdertfgsadscxcadsads').focus(); 
+                return false;
+            }
+            else {
+                $('divLogNote').innerHTML = '<font color="red">正在通过身份验证...请稍候!</font>';
+                document.getElementById("txt_pewerwedsdfsdff").value = '';
+                document.getElementById("txt_sdertfgsadscxcadsads").value = '';
+                Logon.action = "login_home.aspx";
+                Logon.method = "post";
+                Logon.submit();
+                return true;
+            }
+        }
+        function ChkType(obj) {
+            var schoolcode="12843";
+            if(schoolcode=="10482" || schoolcode=="10459")//洛阳师范学院、郑州大学体育学院
+            {
+                if(obj.value=="STU"){
+                    document.getElementById("lbl_wjmm").style.display="";
+                }else{
+                    document.getElementById("lbl_wjmm").style.display="none";
+                }
+            }
+        }
+        function shtitcus(obj) {
+            if (obj.id == "txt_sdertfgsadscxcadsads") {
+                if (obj.value == "请输入验证码") {
+                    obj.value = "";
+                    obj.style.color = "black";
+                }
+            }
+            if (obj.id == "txt_psasas") {
+                if (obj.value == "请输入密码") {
+                    obj.style.display = "none";
+                    document.getElementById("txt_pewerwedsdfsdff").style.display = "";
+                    document.getElementById("txt_pewerwedsdfsdff").focus();
+                }
+            }
+            if (obj.id == "txt_asmcdefsddsd") {
+                if (obj.value == "请输入帐号") {
+                    obj.value = "";
+                    obj.style.color = "black";
+                }
+            }
+        }
+        function shtitblur(obj){
+            if (obj.id == "txt_sdertfgsadscxcadsads") {
+                if (obj.value == "") {
+                    obj.value = "请输入验证码";
+                    obj.style.color = "#ccc";
+                }
+            }
+            if (obj.id == "txt_pewerwedsdfsdff") {
+                if (obj.value == "") {
+                    obj.style.display = "none";
+                    document.getElementById("txt_psasas").style.display = "";
+                }
+            }
+            if (obj.id == "txt_asmcdefsddsd") {
+                if (obj.value == "") {
+                    obj.value = "请输入帐号";
+                    obj.style.color = "#ccc";
+                }
+            }
+        }
+        function return2login(e) {
+            if (!e) e = window.event;
+            if ((e.keyCode || e.which) == 13) {
+                CkValue();
+            }
+        }
+		</script>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/md5.js"></script>
+		<script type="text/javascript">
+function ChkValue(){
+ var vU=$('UID').innerHTML;
+ vU=vU.substring(0,1)+vU.substring(2,3);
+ var vcFlag = "YES"; if ($('txt_asmcdefsddsd').value==''){
+ alert('须录入'+vU+'！');$('txt_asmcdefsddsd').focus();return false;
+}
+ else if ($('txt_pewerwedsdfsdff').value==''){
+ alert('须录入密码！');$('txt_pewerwedsdfsdff').focus();return false;
+}
+ else if ($('txt_sdertfgsadscxcadsads').value=='' && vcFlag == "YES"){
+ alert('须录入验证码！');$('txt_sdertfgsadscxcadsads').focus();return false;
+}
+ else { $('divLogNote').innerHTML='<font color="red">正在通过身份验证...请稍候!</font>';
+   document.getElementById("txt_pewerwedsdfsdff").value = '';
+ document.getElementById("txt_sdertfgsadscxcadsads").value = ''; 
+ return true;}
+ }
+function SelType(obj){
+ var s=obj.options[obj.selectedIndex].getAttribute('usrID');
+ $('UID').innerHTML=s;
+ selTyeName();
+}
+function openWinLog(theURL,w,h){
+var Tform,retStr;
+eval("Tform='width="+w+",height="+h+",scrollbars=no,resizable=no'");
+ if(theURL.indexOf('ReSet_PassWord.aspx')>-1 && ',10482,10466,12425,10459,'.indexOf(',12843,') <= -1 ) {
+ parent.doMobileReset(); } else {
+pop=window.open(theURL,'winKPT',Tform); //pop.moveTo(0,75);
+eval("Tform='dialogWidth:"+w+"px;dialogHeight:"+h+"px;status:no;scrollbars=no;help:no'");
+pop.moveTo((screen.width-w)/2,(screen.height-h)/2);if(typeof(retStr)!='undefined') alert(retStr);
+}
+}
+function showLay(divId){
+var objDiv = eval(divId);
+if (objDiv.style.display=="none")
+{objDiv.style.display="";}
+else{objDiv.style.display="none";}
+}
+function selTyeName(){
+  $('typeName').value=$N('Sel_Type')[0].options[$N('Sel_Type')[0].selectedIndex].text;
+}
+window.onload=function(){
+	var sPC=MSIE?window.navigator.userAgent+window.navigator.cpuClass+window.navigator.appMinorVersion+' SN:NULL':window.navigator.userAgent+window.navigator.oscpu+window.navigator.appVersion+' SN:NULL';
+try{$('pcInfo').value=sPC;}catch(err){}
+try{$('txt_asmcdefsddsd').focus();}catch(err){}
+try{$('typeName').value=$N('Sel_Type')[0].options[$N('Sel_Type')[0].selectedIndex].text;}catch(err){}
+}
+function openWinDialog(url,scr,w,h)
+{
+var Tform;
+eval("Tform='dialogWidth:"+w+"px;dialogHeight:"+h+"px;status:"+scr+";scrollbars=no;help:no'");
+window.showModalDialog(url,1,Tform);
+}
+function openWin(theURL){
+var Tform,w,h;
+try{
+	w=window.screen.width-10;
+}catch(e){}
+try{
+h=window.screen.height-30;
+}catch(e){}
+try{eval("Tform='width="+w+",height="+h+",scrollbars=no,status=no,resizable=yes'");
+pop=parent.window.open(theURL,'',Tform);
+pop.moveTo(0,0);
+parent.opener=null;
+parent.close();}catch(e){}
+}
+function changeValidateCode(Obj){
+var dt = new Date();
+Obj.src="../sys/ValidateCode.aspx?t="+dt.getMilliseconds();
+}
+function chkpwd(obj) {  if(obj.value!='')  {    var s=md5(document.all.txt_asmcdefsddsd.value+md5(obj.value).substring(0,30).toUpperCase()+'12843').substring(0,30).toUpperCase();   document.all.dsdsdsdsdxcxdfgfg.value=s;} else { document.all.dsdsdsdsdxcxdfgfg.value=obj.value;}chkLxstr(obj.value); }  function chkyzm(obj) {  if(obj.value!='') {   var s=md5(md5(obj.value.toUpperCase()).substring(0,30).toUpperCase()+'12843').substring(0,30).toUpperCase();   document.all.fgfggfdgtyuuyyuuckjg.value=s;} else {    document.all.fgfggfdgtyuuyyuuckjg.value=obj.value.toUpperCase();}} function chkLxstr(str) 
+ {
+ if (str!='') { var arr = str.split('');
+for (var i = 1; i < arr.length-1; i++) {
+   var firstIndex = arr[i-1].charCodeAt();
+   var secondIndex = arr[i].charCodeAt();
+   var thirdIndex = arr[i+1].charCodeAt();
+   thirdIndex - secondIndex == 1;
+    secondIndex - firstIndex==1;
+   if(((thirdIndex - secondIndex == 1)&&(secondIndex - firstIndex==1) ) || (thirdIndex==secondIndex && secondIndex==firstIndex)){
+      document.getElementById('txt_mm_lxpd').value='1'; 
+   }
+ }
+ }
+}
+
+</script>
+  </head>
+ <body onselectstart="window.event.returnValue=false"
+		oncontextmenu="window.event.returnValue=false" ondragstart="window.event.returnValue=false"
+		onsource="window.event.returnValue=false" leftMargin="0" topMargin="0" onkeydown="return2login(event)">
+		<table id="divThePanel" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+	
+		<form name="Logon" method="post" action="login_home.aspx" id="Logon" onsubmit="return CkValue();" autocomplete="off">
+	<input type="hidden" name="__VIEWSTATE" value="dDwtNDU3MzUyODE0O3Q8O2w8aTwwPjtpPDE+O2k8Mj47PjtsPHQ8cDxsPFRleHQ7PjtsPOa9jeWdiuenkeaKgOWtpumZojs+Pjs7Pjt0PHA8bDxUZXh0Oz47bDxcPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiXD4KZnVuY3Rpb24gQ2hrVmFsdWUoKXsKIHZhciB2VT0kKCdVSUQnKS5pbm5lckhUTUxcOwogdlU9dlUuc3Vic3RyaW5nKDAsMSkrdlUuc3Vic3RyaW5nKDIsMylcOwogdmFyIHZjRmxhZyA9ICJZRVMiXDsgaWYgKCQoJ3R4dF9hc21jZGVmc2Rkc2QnKS52YWx1ZT09JycpewogYWxlcnQoJ+mhu+W9leWFpScrdlUrJ++8gScpXDskKCd0eHRfYXNtY2RlZnNkZHNkJykuZm9jdXMoKVw7cmV0dXJuIGZhbHNlXDsKfQogZWxzZSBpZiAoJCgndHh0X3Bld2Vyd2Vkc2Rmc2RmZicpLnZhbHVlPT0nJyl7CiBhbGVydCgn6aG75b2V5YWl5a+G56CB77yBJylcOyQoJ3R4dF9wZXdlcndlZHNkZnNkZmYnKS5mb2N1cygpXDtyZXR1cm4gZmFsc2VcOwp9CiBlbHNlIGlmICgkKCd0eHRfc2RlcnRmZ3NhZHNjeGNhZHNhZHMnKS52YWx1ZT09JycgJiYgdmNGbGFnID09ICJZRVMiKXsKIGFsZXJ0KCfpobvlvZXlhaXpqozor4HnoIHvvIEnKVw7JCgndHh0X3NkZXJ0ZmdzYWRzY3hjYWRzYWRzJykuZm9jdXMoKVw7cmV0dXJuIGZhbHNlXDsKfQogZWxzZSB7ICQoJ2RpdkxvZ05vdGUnKS5pbm5lckhUTUw9J1w8Zm9udCBjb2xvcj0icmVkIlw+5q2j5Zyo6YCa6L+H6Lqr5Lu96aqM6K+BLi4u6K+356iN5YCZIVw8L2ZvbnRcPidcOwogICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgidHh0X3Bld2Vyd2Vkc2Rmc2RmZiIpLnZhbHVlID0gJydcOwogZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInR4dF9zZGVydGZnc2Fkc2N4Y2Fkc2FkcyIpLnZhbHVlID0gJydcOyAKIHJldHVybiB0cnVlXDt9CiB9CmZ1bmN0aW9uIFNlbFR5cGUob2JqKXsKIHZhciBzPW9iai5vcHRpb25zW29iai5zZWxlY3RlZEluZGV4XS5nZXRBdHRyaWJ1dGUoJ3VzcklEJylcOwogJCgnVUlEJykuaW5uZXJIVE1MPXNcOwogc2VsVHllTmFtZSgpXDsKfQpmdW5jdGlvbiBvcGVuV2luTG9nKHRoZVVSTCx3LGgpewp2YXIgVGZvcm0scmV0U3RyXDsKZXZhbCgiVGZvcm09J3dpZHRoPSIrdysiLGhlaWdodD0iK2grIixzY3JvbGxiYXJzPW5vLHJlc2l6YWJsZT1ubyciKVw7CiBpZih0aGVVUkwuaW5kZXhPZignUmVTZXRfUGFzc1dvcmQuYXNweCcpXD4tMSAmJiAnLDEwNDgyLDEwNDY2LDEyNDI1LDEwNDU5LCcuaW5kZXhPZignLDEyODQzLCcpIFw8PSAtMSApIHsKIHBhcmVudC5kb01vYmlsZVJlc2V0KClcOyB9IGVsc2Ugewpwb3A9d2luZG93Lm9wZW4odGhlVVJMLCd3aW5LUFQnLFRmb3JtKVw7IC8vcG9wLm1vdmVUbygwLDc1KVw7CmV2YWwoIlRmb3JtPSdkaWFsb2dXaWR0aDoiK3crInB4XDtkaWFsb2dIZWlnaHQ6IitoKyJweFw7c3RhdHVzOm5vXDtzY3JvbGxiYXJzPW5vXDtoZWxwOm5vJyIpXDsKcG9wLm1vdmVUbygoc2NyZWVuLndpZHRoLXcpLzIsKHNjcmVlbi5oZWlnaHQtaCkvMilcO2lmKHR5cGVvZihyZXRTdHIpIT0ndW5kZWZpbmVkJykgYWxlcnQocmV0U3RyKVw7Cn0KfQpmdW5jdGlvbiBzaG93TGF5KGRpdklkKXsKdmFyIG9iakRpdiA9IGV2YWwoZGl2SWQpXDsKaWYgKG9iakRpdi5zdHlsZS5kaXNwbGF5PT0ibm9uZSIpCntvYmpEaXYuc3R5bGUuZGlzcGxheT0iIlw7fQplbHNle29iakRpdi5zdHlsZS5kaXNwbGF5PSJub25lIlw7fQp9CmZ1bmN0aW9uIHNlbFR5ZU5hbWUoKXsKICAkKCd0eXBlTmFtZScpLnZhbHVlPSROKCdTZWxfVHlwZScpWzBdLm9wdGlvbnNbJE4oJ1NlbF9UeXBlJylbMF0uc2VsZWN0ZWRJbmRleF0udGV4dFw7Cn0Kd2luZG93Lm9ubG9hZD1mdW5jdGlvbigpewoJdmFyIHNQQz1NU0lFP3dpbmRvdy5uYXZpZ2F0b3IudXNlckFnZW50K3dpbmRvdy5uYXZpZ2F0b3IuY3B1Q2xhc3Mrd2luZG93Lm5hdmlnYXRvci5hcHBNaW5vclZlcnNpb24rJyBTTjpOVUxMJzp3aW5kb3cubmF2aWdhdG9yLnVzZXJBZ2VudCt3aW5kb3cubmF2aWdhdG9yLm9zY3B1K3dpbmRvdy5uYXZpZ2F0b3IuYXBwVmVyc2lvbisnIFNOOk5VTEwnXDsKdHJ5eyQoJ3BjSW5mbycpLnZhbHVlPXNQQ1w7fWNhdGNoKGVycil7fQp0cnl7JCgndHh0X2FzbWNkZWZzZGRzZCcpLmZvY3VzKClcO31jYXRjaChlcnIpe30KdHJ5eyQoJ3R5cGVOYW1lJykudmFsdWU9JE4oJ1NlbF9UeXBlJylbMF0ub3B0aW9uc1skTignU2VsX1R5cGUnKVswXS5zZWxlY3RlZEluZGV4XS50ZXh0XDt9Y2F0Y2goZXJyKXt9Cn0KZnVuY3Rpb24gb3BlbldpbkRpYWxvZyh1cmwsc2NyLHcsaCkKewp2YXIgVGZvcm1cOwpldmFsKCJUZm9ybT0nZGlhbG9nV2lkdGg6Iit3KyJweFw7ZGlhbG9nSGVpZ2h0OiIraCsicHhcO3N0YXR1czoiK3NjcisiXDtzY3JvbGxiYXJzPW5vXDtoZWxwOm5vJyIpXDsKd2luZG93LnNob3dNb2RhbERpYWxvZyh1cmwsMSxUZm9ybSlcOwp9CmZ1bmN0aW9uIG9wZW5XaW4odGhlVVJMKXsKdmFyIFRmb3JtLHcsaFw7CnRyeXsKCXc9d2luZG93LnNjcmVlbi53aWR0aC0xMFw7Cn1jYXRjaChlKXt9CnRyeXsKaD13aW5kb3cuc2NyZWVuLmhlaWdodC0zMFw7Cn1jYXRjaChlKXt9CnRyeXtldmFsKCJUZm9ybT0nd2lkdGg9Iit3KyIsaGVpZ2h0PSIraCsiLHNjcm9sbGJhcnM9bm8sc3RhdHVzPW5vLHJlc2l6YWJsZT15ZXMnIilcOwpwb3A9cGFyZW50LndpbmRvdy5vcGVuKHRoZVVSTCwnJyxUZm9ybSlcOwpwb3AubW92ZVRvKDAsMClcOwpwYXJlbnQub3BlbmVyPW51bGxcOwpwYXJlbnQuY2xvc2UoKVw7fWNhdGNoKGUpe30KfQpmdW5jdGlvbiBjaGFuZ2VWYWxpZGF0ZUNvZGUoT2JqKXsKdmFyIGR0ID0gbmV3IERhdGUoKVw7Ck9iai5zcmM9Ii4uL3N5cy9WYWxpZGF0ZUNvZGUuYXNweD90PSIrZHQuZ2V0TWlsbGlzZWNvbmRzKClcOwp9CmZ1bmN0aW9uIGNoa3B3ZChvYmopIHsgIGlmKG9iai52YWx1ZSE9JycpICB7ICAgIHZhciBzPW1kNShkb2N1bWVudC5hbGwudHh0X2FzbWNkZWZzZGRzZC52YWx1ZSttZDUob2JqLnZhbHVlKS5zdWJzdHJpbmcoMCwzMCkudG9VcHBlckNhc2UoKSsnMTI4NDMnKS5zdWJzdHJpbmcoMCwzMCkudG9VcHBlckNhc2UoKVw7ICAgZG9jdW1lbnQuYWxsLmRzZHNkc2RzZHhjeGRmZ2ZnLnZhbHVlPXNcO30gZWxzZSB7IGRvY3VtZW50LmFsbC5kc2RzZHNkc2R4Y3hkZmdmZy52YWx1ZT1vYmoudmFsdWVcO31jaGtMeHN0cihvYmoudmFsdWUpXDsgfSAgZnVuY3Rpb24gY2hreXptKG9iaikgeyAgaWYob2JqLnZhbHVlIT0nJykgeyAgIHZhciBzPW1kNShtZDUob2JqLnZhbHVlLnRvVXBwZXJDYXNlKCkpLnN1YnN0cmluZygwLDMwKS50b1VwcGVyQ2FzZSgpKycxMjg0MycpLnN1YnN0cmluZygwLDMwKS50b1VwcGVyQ2FzZSgpXDsgICBkb2N1bWVudC5hbGwuZmdmZ2dmZGd0eXV1eXl1dWNramcudmFsdWU9c1w7fSBlbHNlIHsgICAgZG9jdW1lbnQuYWxsLmZnZmdnZmRndHl1dXl5dXVja2pnLnZhbHVlPW9iai52YWx1ZS50b1VwcGVyQ2FzZSgpXDt9fSBmdW5jdGlvbiBjaGtMeHN0cihzdHIpIAogewogaWYgKHN0ciE9JycpIHsgdmFyIGFyciA9IHN0ci5zcGxpdCgnJylcOwpmb3IgKHZhciBpID0gMVw7IGkgXDwgYXJyLmxlbmd0aC0xXDsgaSsrKSB7CiAgIHZhciBmaXJzdEluZGV4ID0gYXJyW2ktMV0uY2hhckNvZGVBdCgpXDsKICAgdmFyIHNlY29uZEluZGV4ID0gYXJyW2ldLmNoYXJDb2RlQXQoKVw7CiAgIHZhciB0aGlyZEluZGV4ID0gYXJyW2krMV0uY2hhckNvZGVBdCgpXDsKICAgdGhpcmRJbmRleCAtIHNlY29uZEluZGV4ID09IDFcOwogICAgc2Vjb25kSW5kZXggLSBmaXJzdEluZGV4PT0xXDsKICAgaWYoKCh0aGlyZEluZGV4IC0gc2Vjb25kSW5kZXggPT0gMSkmJihzZWNvbmRJbmRleCAtIGZpcnN0SW5kZXg9PTEpICkgfHwgKHRoaXJkSW5kZXg9PXNlY29uZEluZGV4ICYmIHNlY29uZEluZGV4PT1maXJzdEluZGV4KSl7CiAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0eHRfbW1fbHhwZCcpLnZhbHVlPScxJ1w7IAogICB9CiB9CiB9Cn0KClw8L3NjcmlwdFw+Oz4+Ozs+O3Q8O2w8aTwxPjs+O2w8dDw7bDxpPDA+O2k8Mj47PjtsPHQ8cDxsPFRleHQ7PjtsPFw8b3B0aW9uIHZhbHVlPSdTVFUnIHVzcklEPSflrabjgIDlj7cnXD7lrabnlJ9cPC9vcHRpb25cPgpcPG9wdGlvbiB2YWx1ZT0nVEVBJyB1c3JJRD0n5bel44CA5Y+3J1w+5pWZ5biI5pWZ6L6F5Lq65ZGYXDwvb3B0aW9uXD4KXDxvcHRpb24gdmFsdWU9J1NZUycgdXNySUQ9J+W4kOOAgOWPtydcPueuoeeQhuS6uuWRmFw8L29wdGlvblw+Clw8b3B0aW9uIHZhbHVlPSdBRE0nIHVzcklEPSfluJDjgIDlj7cnXD7pl6jmiLfnu7TmiqTlkZhcPC9vcHRpb25cPgo7Pj47Oz47dDxwPHA8bDxUZXh0Oz47bDzmraPlnKjliqDovb3vvIzor7fnqI3lgJkuLi47Pj47Pjs7Pjs+Pjs+Pjs+Pjs+jcP8EC1/ZsObM/c2vW8sgBBJiIM=" />
+
+			<input id="pcInfo" type="hidden" name="pcInfo">
+            <input type="hidden" id="txt_mm_expression" name="txt_mm_expression" value="" />
+            <input type="hidden" id="txt_mm_length" name="txt_mm_length" value="" /> 
+            <input type="hidden" id="txt_mm_userzh" name="txt_mm_userzh" value="" />
+			<input id="typeName" type="hidden" name="typeName">
+			<input type="hidden" id="dsdsdsdsdxcxdfgfg" name="dsdsdsdsdxcxdfgfg">
+			<input type="hidden" id="fgfggfdgtyuuyyuuckjg" name="fgfggfdgtyuuyyuuckjg">
+			<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="height:286px">
+			    <tr>
+						<td align="center" width="265" height="36" style="padding-left:1px;font-family:微软雅黑;font-size:15px;color:#2c93db;font-weight:bold">
+							<label id="lbl_zhdl">帐号登录</label><label id="qr_btn" style='color:black;padding-left:40px;cursor:pointer;	display:none;'>扫码登录</label>
+						</td>
+					</tr>
+				<tr><td width="100%" height="170" align="center" valign="top" style="padding-left:20px">
+					<table height="100%" cellSpacing="0" width="100%" cellPadding="0" border="0" align="center" style="padding-top:0px">
+					<tr style="padding-top:0px">
+						<td align="right" height="31px" valign="bottom"><img src="../images/home_new/d_seltype.gif" height="31px" /></td>
+                        <td align="left" height="31px" valign="bottom" ><div style="background:#fff;border:1px solid #ccc;padding:4px;width:160px;height:22px"  >
+                           <select style="WIDTH: 160px;border:1px solid #fff;color:#666;" name="Sel_Type" onchange="ChkType(this)">
+							<option value='STU' usrID='学　号'>学生</option>
+<option value='TEA' usrID='工　号'>教师教辅人员</option>
+<option value='SYS' usrID='帐　号'>管理人员</option>
+<option value='ADM' usrID='帐　号'>门户维护员</option>
+
+							</select></div>
+						</td>
+					</tr>
+					<tr style="padding-top:0px">
+						<td id="UID" align="right" height="41" valign="bottom"><img src="../images/home_new/d_accout.gif" height="31px"/></td>
+                        <td align="left" valign="bottom"><input name="txt_asmcdefsddsd" id="txt_asmcdefsddsd" type="text" class="tx1" style="WIDTH:164px;HEIGHT:28px;line-height:28px;border:1px solid #e4e4e4;background-color:#FEFFFF;" maxlength="20" autocomplete="off" onfocus="shtitcus(this)" onblur="shtitblur(this)" />
+						</td>
+					</tr>
+					<tr style="padding-top:0px">
+						<td id="PWD" align="right" height="41" valign="bottom"><img src="../images/home_new/d_passwd.gif" height="31px"/></td>
+                        <td align="left" valign="bottom"><input class="tx1" id="txt_pewerwedsdfsdff" style="WIDTH:164px;HEIGHT:28px;line-height:28px;border:1px solid #e4e4e4;background-color:#FEFFFF;display:none" type="password" maxLength="25" name="txt_pewerwedsdfsdff" autocomplete="off" onblur="shtitblur(this);chkpwd(this)" onkeyup="chkpwd(this)"><input class="tx1" id="txt_psasas" onfocus="shtitcus(this)" style="WIDTH:164px;HEIGHT:28px;line-height:28px;border:1px solid #e4e4e4;background-color:#FEFFFF;color:#ccc"  maxLength="25" name="txt_psasas" value="请输入密码" autocomplete="off" onkeyup="shtitblur(this)">
+						</td>						
+					</tr>
+					<tr >
+						<td height="41" colspan=2 align="left" style="padding-left:10px" valign="bottom">
+						<input class="tx1" onclick="showvc(this)" onfocus="showvc(this)" id="txt_sdertfgsadscxcadsads" name="txt_sdertfgsadscxcadsads" value="请输入验证码" style="WIDTH:120px;HEIGHT:28px;line-height:28px;vertical-align:bottom;margin-bottom:4px;border:1px solid #e4e4e4;background-color:#FEFFFF;color:#ccc" maxlength="4" autocomplete="off" onblur="shtitblur(this);chkyzm(this)" onkeyup="chkyzm(this)">
+						<img id="imgCode" src="../sys/ValidateCode.aspx" onclick="changeValidateCode(this)" alt="单击可更换图片！" style="display:none;WIDTH:80px;HEIGHT:28px;CURSOR:pointer;margin:0px;">						
+						</td>
+					</tr>
+                    <tr >										
+						<td align="right" colspan=2 style="padding-right:20px">
+						     <label id="lbl_wjmm" ><a href="javascript:void(0)" onclick="parent.doMobileReset()" style="color:#f87409;font-family:微软雅黑">忘记密码？</a></label>
+						</td>
+					</tr>
+					<tr>										
+						<td vAlign="bottom" style="padding-right:20px;text-align:center" align="center" height="26" colspan=2 >
+						<input class="btnlogin" type="button" value="" id="btn_login" name="btn_login" onclick="CkValue()">
+						</td>
+					</tr>
+					
+				</TABLE>
+				</td></tr>
+				<tr><td valign="top" style="padding-top:5px">
+					<div align="center"><span id="divLogNote"><font color="Red">正在加载，请稍候...</font></span></div>
+				</td></tr>
+			</table>
+		</form>		
+	
+</td></tr></table>
+										
+</body>
+</html>
+<script language="javascript" type="text/javascript">
+    var param = window.location.href.toString().toLowerCase();
+    param = param.substring(0, param.length - 21);
+    var xp = parent.window.location.href.toString().toLowerCase();
+    if (xp != param &&  (("12843"!="10467" && xp!=param+"home.aspx") || ("12843"=="10467" && xp!=param+"default.aspx"))) {
+        if ("2" != "2" &&    xp != param + "index.aspx") 
+            window.top.location.href = "../_help/Sorry.aspx?str=系统出错！";
+    }
+
+</script>
+

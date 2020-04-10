@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/error.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/test1.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/test3.html" charset="US-ASCII" />
   </component>
