@@ -166,8 +166,6 @@ function ChkVal() {
     return {"hidsjyzm": hidsjyzm, "s": s}
 }
 
-// txt_asmcdefsddsd = "2018253328";
-// user_name = "135089293Wx";
 
 function usermd5(txt_asmcdefsddsd, user_name) {
     return md5(txt_asmcdefsddsd + md5(user_name).substring(0, 30).toUpperCase() + '12843').substring(0, 30).toUpperCase();

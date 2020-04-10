@@ -1,6 +1,5 @@
 import requests
 import re
-import json
 
 '''
     需要分别伪造两个请求：
@@ -27,7 +26,7 @@ class Climb_to_God:
         '''获取 hidyzm hidsjyzm s'''
         res = requests.get(url=url_3, headers=self.headers_3).content.decode("gb2312")
         hidyzm = re.findall(r'''name="hidyzm" value="(.*?)"''', res)[0]
-        from test_execjs import GET_EXECJS
+        from Testing_phase.test_execjs import GET_EXECJS
         ge = GET_EXECJS()
         rpe = ge.run()
         # print(type(rpe))
