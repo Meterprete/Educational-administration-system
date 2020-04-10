@@ -166,7 +166,10 @@ function ChkVal() {
     return {"hidsjyzm": hidsjyzm, "s": s}
 }
 
+<<<<<<< HEAD:Testing_phase/md5.js
 
+=======
+>>>>>>> 833b61d5a23d94419642f27b0693d973b66514da:md5.js
 function usermd5(txt_asmcdefsddsd, user_name) {
     return md5(txt_asmcdefsddsd + md5(user_name).substring(0, 30).toUpperCase() + '12843').substring(0, 30).toUpperCase();
 }
